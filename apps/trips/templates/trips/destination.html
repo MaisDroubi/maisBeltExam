@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Destination</title>
+        {% load static %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+            body{
+              font-family: cursive;
+              margin-top: 100px;
+            }
+          </style>
+    </head>
+    <body>
+        <div class="col-sm-offset-4">
+            <div class="col-sm-offset-4">
+                <a href="/travels">Home</a><a href="/logout">Logout</a>
+            </div>
+            <div class="">
+                <h2>{{ destination }}</h2>
+                <b>Planned by:</b> {{ planner.first_name }} {{ planner.last_name}}<br>
+                <b>Description:</b> {{ description }}<br>
+                <b>Trip Start Date:</b> {{ start_date|date:"M d, Y" }}<br>
+                <b>Trip End Date:</b> {{ end_date|date:"M d, Y" }}<br>
+            </div>
+            <div class="">
+                <br><br>
+                <b>Other Users Joining:</b>
+                {% if all_users %}
+                    <ul>
+                        {% for user in all_users %}
+                            {% if user.id == planner.id %}
+                                {{ pass }}
+                            {% else %}
+                                <li>{{ user.first_name}} {{ user.last_name }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </body>
+</html>
